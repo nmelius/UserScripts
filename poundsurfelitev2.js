@@ -9,9 +9,10 @@
 (function() {
     //Initiate Flags
     var refreshEnabled = true;
-    var autoAdoptEnabled = false;
+    var autoAdoptEnabled = true;
     var petFound = false;
     var selectedPet = null;
+    var regexEnabled = true;
 
     //Maps for Value mapping
     const targetAdoptionFee = new Map([
@@ -51,8 +52,7 @@
     ]);
 
     const targetColors = new Map([
-        ["Baby", 1],
-        ["Grey", 1],
+        //["Baby", 1],
         ["Darigan", 10],
         ["Invisible", 1],
         ["Maraquan", 2],
@@ -66,15 +66,26 @@
         ["Faerie", 5],
         ["Toy", 3],
         ["Burlap", 30],
+        ["Alien", 30],
     ]);
 
     const blacklist = new Map([
-        ["Baby", 1],
+        //["Ohyq", 1],
+        //["Quinfray", 1],
+        //["Tucman", 1],
+        //["GoldenDomer", 1],
+        //["Flora144561", 1],
+        //["Manifcint", 1],
+        ["TempName", 1],
     ]);
 
     const blacklistSpecies = new Map([
         ["Lenny", 1],
-        ["Moehawg", 1],
+        ["Moehog", 1],
+    ]);
+
+    const blacklistColors = new Map([
+        ["Pirate", 1],
     ]);
 
     //Event Listener and Function for forcing Pause on auto refresh loop
@@ -267,9 +278,17 @@
             totalValue += targetColors.get(pet.color);
         }
 
-        if(blacklist.has(pet.name) || blacklistSpecies.has(pet.species))
+        if(blacklist.has(pet.name) || blacklistSpecies.has(pet.species) || blacklistColors.has(pet.colors))
         {
             totalValue = 0;
+        }
+
+        if(regexEnabled && totalValue < 20)
+        {
+            var nameRegex = /^[a-zA-Z]*$/g;
+            if(!nameRegex.test(pet.name)){
+                totalValue = 0;
+            }
         }
 
         pet.petValue = totalValue;
