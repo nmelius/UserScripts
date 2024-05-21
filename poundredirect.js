@@ -21,7 +21,7 @@
         return Math.floor((Math.random * (max - min)) + min);
     }
 
-    var neopoints = Number((document.getElementById('npanchor').innerHTML).replace(',', ''));
+    var neopoints = Number((document.getElementById('npanchor').innerHTML).replaceAll(',', ''));
     console.log('Neopoints ' + neopoints);
 
     for(let i = 0; i < table.tBodies[0].rows.length; i++)
