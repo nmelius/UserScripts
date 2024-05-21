@@ -278,7 +278,7 @@
             totalValue += targetColors.get(pet.color);
         }
 
-        if(blacklist.has(pet.name) || blacklistSpecies.has(pet.species) || blacklistColors.has(pet.colors))
+        if((blacklist.has(pet.name) || blacklistSpecies.has(pet.species) || blacklistColors.has(pet.colors)) && totalValue < 20)
         {
             totalValue = 0;
         }
