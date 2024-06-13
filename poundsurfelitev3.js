@@ -296,7 +296,7 @@
             }
         }
 
-        if(pet.name.length<5 && !blacklist.had(pet.name)){
+        if(pet.name.length<5 && !blacklist.has(pet.name)){
             totalValue+=30;
         }
 
